@@ -1,39 +1,33 @@
-"""Context manager for environment variables.
+"""
+Context manager for environment variables
 
 Usage:
     os.environ['MYVAR'] = 'oldvalue'
 
-    with EnvironmentVariable('MYVAR', 'myvalue'):
+    with EnvironmentContex(MYVAR='myvalue', VAR2='myvalue2'):
         print os.getenv('MYVAR')    # Should print myvalue.
+        print os.getenv('MYVAR2')    # Should print myvalue2.
 
     print os.getenv('MYVAR')        # Should print oldvalue.
+    print os.getenv('MYVAR2')        # Should print None.
 """
 
 import os
 
-class EnvironmentVariable(object):
-    """Context manager for creating a temporary environment variable.
-    """
-    def __init__(self, key, value):
-        """Contructor.
 
-        Args:
-            key - Environment variable name.
-            value - Value to set in environment variable.
-        """
-        self.key = key
-        self.newValue = value
+class EnvironmentContext(object):
+    def __init__(self, **kwargs):
+        self.envs = kwargs
 
     def __enter__(self):
-        """Sets the environment variable and saves the old value.
-        """
-        self.oldValue = os.environ.get(self.key)
-        os.environ[self.key] = self.newValue
+        self.old_envs = {}
+        for k, v in self.envs.items():
+            self.old_envs[k] = os.environ.get(k)
+            os.environ[k] = v
 
     def __exit__(self, *args):
-        """Sets the environment variable back to the way it was before.
-        """
-        if self.oldValue:
-            os.environ[self.key] = self.oldValue
-        else:
-            del os.environ[self.key]
+        for k, v in self.old_envs.items():
+            if v:
+                os.environ[k] = v
+            else:
+                del os.environ[k]
