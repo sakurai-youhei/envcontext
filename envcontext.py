@@ -4,7 +4,7 @@ Context manager for environment variables
 Usage:
     os.environ['MYVAR'] = 'oldvalue'
 
-    with EnvironmentContex(MYVAR='myvalue', VAR2='myvalue2'):
+    with EnvironmentContex(MYVAR='myvalue', MYVAR2='myvalue2'):
         print os.getenv('MYVAR')    # Should print myvalue.
         print os.getenv('MYVAR2')    # Should print myvalue2.
 
