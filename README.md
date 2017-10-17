@@ -16,7 +16,8 @@ pip install envcontext
 
 ## Usage
 
-Ex. 1
+### Ex. 1: Update environment variables in current process
+
 ```
 from os import environ
 from envcontext import EnvironmentContext as EnvContext
@@ -29,7 +30,8 @@ with EnvContext(TEST_VAR="updated"):
 print(environ["TEST_VAR"])  # Prints "original".
 ```
 
-Ex. 2 (Note: This is not working on Python 2.7)
+### Ex. 2: Update environment variables in child process
+
 ```
 from subprocess import check_output
 from envcontext import EnvironmentContext as EnvContext
@@ -37,3 +39,5 @@ from envcontext import EnvironmentContext as EnvContext
 with EnvContext(PGPASSWORD="very-secret-password"):
     check_output(["psql", "..."])  # psql process can manipulate PGPASSWORD.
 ```
+
+_Note: This is not working on Python 2.x._

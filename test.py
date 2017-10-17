@@ -107,8 +107,9 @@ class EnvContextFuzzingTest(TestCase):
                                   key_update, value_update,
                                   os_getenv)
 
-    @skipIf(version_info[0] == 2, "Test won't pass due to no replication of "
-            "environmental variables to child process by subprocess module.")
+    @skipIf(version_info[0] == 2, "The test won't succeed on 2.x due to no "
+            "propagation of environmental variables to child process by "
+            "subprocess module.")
     def test_subshell(self, N=100):
         keys = tuple(environ)
         for _ in range(N):
