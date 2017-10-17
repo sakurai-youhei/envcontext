@@ -1,33 +1,33 @@
 """
-Context manager for environment variables
-
 Usage:
     os.environ['MYVAR'] = 'oldvalue'
 
     with EnvironmentContex(MYVAR='myvalue', MYVAR2='myvalue2'):
-        print os.getenv('MYVAR')    # Should print myvalue.
-        print os.getenv('MYVAR2')    # Should print myvalue2.
+        print(os.getenv('MYVAR'))  # Should print myvalue.
+        print(os.getenv('MYVAR2'))  # Should print myvalue2.
 
-    print os.getenv('MYVAR')        # Should print oldvalue.
-    print os.getenv('MYVAR2')        # Should print None.
+    print(os.getenv('MYVAR'))  # Should print oldvalue.
+    print(os.getenv('MYVAR2'))  # Should print None.
 """
 
-import os
+from os import environ
 
 
 class EnvironmentContext(object):
+    """Context manager to update environment variables with preservation"""
     def __init__(self, **kwargs):
         self.envs = kwargs
+        self.preservation = {}
 
     def __enter__(self):
-        self.old_envs = {}
-        for k, v in self.envs.items():
-            self.old_envs[k] = os.environ.get(k)
-            os.environ[k] = v
+        for k in self.envs:
+            if k not in self.preservation:
+                self.preservation[k] = environ.get(k)
+            environ[k] = self.envs[k]
 
-    def __exit__(self, *args):
-        for k, v in self.old_envs.items():
-            if v:
-                os.environ[k] = v
+    def __exit__(self, *_):
+        for k in self.preservation:
+            if self.preservation[k]:
+                environ[k] = self.preservation[k]
             else:
-                del os.environ[k]
+                environ.pop(k, None)
