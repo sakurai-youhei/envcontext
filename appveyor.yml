@@ -94,11 +94,11 @@ after_test:
   - "echo     pypi                                      >> %USERPROFILE%\\.pypirc"
   - "echo     pypitest                                  >> %USERPROFILE%\\.pypirc"
   - "echo [pypi]                                        >> %USERPROFILE%\\.pypirc"
-  - "echo repository = https://pypi.python.org/pypi     >> %USERPROFILE%\\.pypirc"
+  - "echo repository = https://upload.pypi.org/legacy/  >> %USERPROFILE%\\.pypirc"
   - "echo username = %PYPIUSERNAME%                     >> %USERPROFILE%\\.pypirc"
   - "echo password = %PYPIPASSWORD%                     >> %USERPROFILE%\\.pypirc"
   - "echo [pypitest]                                    >> %USERPROFILE%\\.pypirc"
-  - "echo repository = https://testpypi.python.org/pypi >> %USERPROFILE%\\.pypirc"
+  - "echo repository = https://test.pypi.org/legacy/    >> %USERPROFILE%\\.pypirc"
   - "echo username = %PYPITESTUSERNAME%                 >> %USERPROFILE%\\.pypirc"
   - "echo password = %PYPITESTPASSWORD%                 >> %USERPROFILE%\\.pypirc"
 
