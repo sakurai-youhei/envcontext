@@ -105,7 +105,6 @@ after_test:
   # Determine if building target is a tag which name starts with 'v0', 'v1', ... or 'v9'
   - "echo %APPVEYOR_REPO_TAG_NAME% | findstr /B \"v[0-9]\" && set PYPI=pypi || exit /b 0"
 
-  - "python setup.py register -r %PYPI: =%"
   - "python setup.py sdist upload -r %PYPI: =% || exit 0"
   - ps: "ls dist"
 
