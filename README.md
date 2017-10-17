@@ -40,4 +40,4 @@ with EnvContext(PGPASSWORD="very-secret-password"):
     check_output(["psql", "..."])  # psql process can manipulate PGPASSWORD.
 ```
 
-_Note: This is not working on Python 2.x._
+_Note: Ex. 2 is not working on Python 2.x because subprocess module shipped in 2.x doesn't propagate environment variables from current to child process._
