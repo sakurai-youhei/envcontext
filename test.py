@@ -8,7 +8,7 @@ from os import environ
 from os import getenv as os_getenv
 from os import name as osname
 from random import choice
-from random import choices
+from random import sample
 from random import randint
 from string import ascii_letters
 from string import digits
@@ -32,7 +32,7 @@ WINSHELL_UNREWRITABLE_ENVS = (
 def quickfuzzer(MAX_LENGTH=16):
     printable_wo_space = ascii_letters + digits + punctuation
     while True:
-        yield "".join(choices(printable_wo_space, k=randint(0, MAX_LENGTH)))
+        yield "".join(sample(printable_wo_space, randint(0, MAX_LENGTH)))
 
 
 def is_invalid_key(key):
