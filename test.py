@@ -14,8 +14,10 @@ from string import ascii_letters
 from string import digits
 from string import punctuation
 from subprocess import check_output
+from sys import version_info
 from unittest import main
 from unittest import TestCase
+from unittest import skipIf
 from uuid import uuid4
 
 from envcontext import EnvironmentContext as EnvContext
@@ -105,6 +107,8 @@ class EnvContextFuzzingTest(TestCase):
                                   key_update, value_update,
                                   os_getenv)
 
+    @skipIf(version_info[0] == 2, "Test won't pass due to no replication of "
+            "environmental variables to child process by subprocess module.")
     def test_subshell(self, N=100):
         keys = tuple(environ)
         for _ in range(N):

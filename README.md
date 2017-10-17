@@ -29,7 +29,7 @@ with EnvContext(TEST_VAR="updated"):
 print(environ["TEST_VAR"])  # Prints "original".
 ```
 
-Ex. 2
+Ex. 2 (Note: This is not working on Python 2.7)
 ```
 from subprocess import check_output
 from envcontext import EnvironmentContext as EnvContext
