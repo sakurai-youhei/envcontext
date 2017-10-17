@@ -16,8 +16,8 @@ from string import punctuation
 from subprocess import check_output
 from sys import version_info
 from unittest import main
-from unittest import TestCase
 from unittest import skipIf
+from unittest import TestCase
 from uuid import uuid4
 
 from envcontext import EnvironmentContext as EnvContext
