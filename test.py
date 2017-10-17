@@ -8,8 +8,8 @@ from os import environ
 from os import getenv as os_getenv
 from os import name as osname
 from random import choice
-from random import sample
 from random import randint
+from random import sample
 from string import ascii_letters
 from string import digits
 from string import punctuation
