@@ -60,9 +60,9 @@ environment:
 
   PYPI: pypitest
 
-  SKIP_IF_PY33: "findstr 33 && echo Skipped || "
+  SKIP_IF_PY33: "echo %PYTHON% | findstr 33 && echo Skipped || "
 
-  SKIP_UNLESS_PY36_64: "findstr /V 36-x64 && echo Skipped || "
+  SKIP_UNLESS_PY36_64: "echo %PYTHON% | findstr /V 36-x64 && echo Skipped || "
 
 install:
 
@@ -84,8 +84,8 @@ before_test:
 test_script:
 
   - "python test.py"
-  - "echo %PYTHON% | %SKIP_IF_PY33% python setup.py check -m -r -s"
-  - "echo %PYTHON% | %SKIP_IF_PY33% python -m flake8 ."
+  - "%SKIP_IF_PY33% python setup.py check -m -r -s"
+  - "%SKIP_IF_PY33% python -m flake8 ."
 
 after_test:
 
@@ -107,8 +107,8 @@ after_test:
   # Determine if building target is a tag which name starts with 'v0', 'v1', ... or 'v9'
   - "echo %APPVEYOR_REPO_TAG_NAME% | findstr /B \"v[0-9]\" && set PYPI=pypi || exit /b 0"
 
-  - "echo %PYTHON% | %SKIP_UNLESS_PY36_64% python setup.py sdist upload -r %PYPI: =%"
-  - ps: "ls dist || exit /b 0"
+  - "%SKIP_UNLESS_PY36_64% python setup.py sdist upload -r %PYPI: =%"
+  - "dir dist || exit /b 0"
 
 #artifacts:
 #on_success:
