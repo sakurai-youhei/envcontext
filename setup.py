@@ -3,6 +3,7 @@ Created on 2017/10/17
 
 @author: sakurai
 '''
+from os import getenv
 
 try:
     from setuptools import setup
@@ -12,9 +13,10 @@ except ImportError:
 from textwrap import dedent
 
 
+BUILD = getenv("APPVEYOR_BUILD_NUMBER")
 HOMEPAGE = "https://github.com/sakurai-youhei/envcontext"
 setup(
-    version="2017.10.17",
+    version="2017.10.18" + (BUILD and "b{}".format(BUILD) or ""),
     name="envcontext",
     py_modules=["envcontext"],
     license="MIT",
