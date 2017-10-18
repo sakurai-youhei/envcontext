@@ -10,7 +10,7 @@ Context manager to update environment variables with preservation
 
 ## Installation
 
-```python
+```
 pip install envcontext
 ```
 
@@ -32,7 +32,7 @@ print(environ["TEST_VAR"])  # Prints "original".
 
 ### Ex. 2: Update environment variables in child process
 
-```
+```python
 from subprocess import check_output
 from envcontext import EnvironmentContext as EnvContext
 
