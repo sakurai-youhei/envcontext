@@ -19,15 +19,17 @@ pip install envcontext
 ### Ex. 1: Update environment variables in current process
 
 ```python
-from os import environ
+from os import environ, getenv
 from envcontext import EnvironmentContext as EnvContext
 
-environ["TEST_VAR"] = "original"
+environ["TEST_VAR1"] = "original"
 
-with EnvContext(TEST_VAR="updated"):
-    print(environ["TEST_VAR"])  # Prints "updated".
+with EnvContext(TEST_VAR1="updated", TEST_VAR2="added"):
+    print(environ["TEST_VAR1"])  # Prints "updated".
+    print(environ["TEST_VAR2"])  # Prints "added".
 
-print(environ["TEST_VAR"])  # Prints "original".
+print(getenv("TEST_VAR1"))  # Prints "original".
+print(getenv("TEST_VAR2"))  # Should print "None".
 ```
 
 ### Ex. 2: Update environment variables in child process
@@ -40,4 +42,4 @@ with EnvContext(PGPASSWORD="very-secret-password"):
     check_output(["psql", "..."])  # psql process can manipulate PGPASSWORD.
 ```
 
-_Note: Ex. 2 is not working on Python 2.x because subprocess module shipped with Python 2.x doesn't propagate environment variables from current to child process._
+_Note: Ex. 2 is not working on Python 2.x because subprocess module bundled in Python 2.x doesn't propagate environment variables from current to child process._
