@@ -108,7 +108,7 @@ after_test:
   - "echo %APPVEYOR_REPO_TAG_NAME% | findstr /B \"v[0-9]\" && set PYPI=pypi || exit /b 0"
 
   - "echo %PYTHON% | %SKIP_UNLESS_PY36_64% python setup.py sdist upload -r %PYPI: =%"
-  - ps: "ls dist"
+  - ps: "ls dist || exit /b 0"
 
 #artifacts:
 #on_success:
