@@ -10,7 +10,7 @@ Context manager to update environment variables with preservation
 
 ## Installation
 
-```
+```python
 pip install envcontext
 ```
 
@@ -18,7 +18,7 @@ pip install envcontext
 
 ### Ex. 1: Update environment variables in current process
 
-```
+```python
 from os import environ
 from envcontext import EnvironmentContext as EnvContext
 
