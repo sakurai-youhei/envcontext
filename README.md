@@ -5,8 +5,8 @@ Context manager to update environment variables with preservation
 
 [![Build status](https://img.shields.io/appveyor/ci/sakurai_youhei/envcontext/master.svg?label=Python%202.7%2C%203.3%20to%203.6%20%2F%20win32%20%26%20win_amd64)](https://ci.appveyor.com/project/sakurai_youhei/envcontext/branch/master)
 
-- [envcontext on PyPI](https://pypi.python.org/pypi/envcontext)
-- [envcontext on PyPI Test](https://testpypi.python.org/pypi/envcontext)
+- [envcontext on PyPI](https://pypi.org/project/envcontext/)
+- [envcontext on PyPI Test](https://test.pypi.org/project/envcontext/)
 
 ## Installation
 
