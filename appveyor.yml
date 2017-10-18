@@ -60,7 +60,9 @@ environment:
 
   PYPI: pypitest
 
-  SKIP_IF_PY33: "findstr /B 3.3 && echo Skipping because of Python 3.3 || "
+  SKIP_IF_PY33: "findstr /B 3.3 && echo Skipped || "
+
+  SKIP_UNLESS_PY36_64: "findstr /B 36-x64 && echo Skipped || "
 
 install:
 
@@ -105,7 +107,7 @@ after_test:
   # Determine if building target is a tag which name starts with 'v0', 'v1', ... or 'v9'
   - "echo %APPVEYOR_REPO_TAG_NAME% | findstr /B \"v[0-9]\" && set PYPI=pypi || exit /b 0"
 
-  - "python setup.py sdist upload -r %PYPI: =% || exit 0"
+  - "echo %PYTHON% | %SKIP_UNLESS_PY36_64% python setup.py sdist upload -r %PYPI: =%"
   - ps: "ls dist"
 
 #artifacts:
