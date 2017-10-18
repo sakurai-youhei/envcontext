@@ -28,7 +28,7 @@ setup(
     long_description="See README on %s" % HOMEPAGE,
     classifiers=dedent("""\
         License :: OSI Approved :: MIT License
-        Development Status :: 4 - Beta
+        Development Status :: 5 - Production/Stable
         Programming Language :: Python :: 2.7
         Programming Language :: Python :: 3.3
         Programming Language :: Python :: 3.4
