@@ -16,7 +16,7 @@ from textwrap import dedent
 BUILD = getenv("APPVEYOR_BUILD_NUMBER")
 HOMEPAGE = "https://github.com/sakurai-youhei/envcontext"
 setup(
-    version="2017.10.18" + (BUILD and ".{}".format(BUILD) or ""),
+    version="2017.10.19" + (BUILD and ".{}".format(BUILD) or ""),
     name="envcontext",
     py_modules=["envcontext"],
     license="MIT",
